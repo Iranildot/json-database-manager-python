@@ -4,7 +4,7 @@ from typing import Any
 import threading
 
 
-class Database:
+class JSONDatabaseManager:
     """
     Thread-safe JSON database manager.
 
