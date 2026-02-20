@@ -4,22 +4,22 @@ import threading
 import unittest
 from pathlib import Path
 
-from database import Database  # ajuste o import para o nome do seu arquivo
+from json_database_manager import JSONDatabaseManager  # ajuste o import para o nome do seu arquivo
 
 
-class TestDatabase(unittest.TestCase):
+class TestJSONDatabaseManager(unittest.TestCase):
     def setUp(self):
         """Create a temporary directory and database file for each test."""
         self.temp_dir = Path(tempfile.mkdtemp())
         self.db_path = self.temp_dir / "test_db.json"
-        self.db = Database(str(self.db_path))
+        self.db = JSONDatabaseManager(str(self.db_path))
 
     def tearDown(self):
         """Remove temporary directory after each test."""
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
     def test_initial_load_empty(self):
-        """Database should start empty if file does not exist."""
+        """JSONDatabaseManager should start empty if file does not exist."""
         self.assertEqual(self.db.get_all(), {})
 
     def test_set_and_get(self):
@@ -68,7 +68,7 @@ class TestDatabase(unittest.TestCase):
         self.db.set("volume", 80)
 
         # Reload database from disk
-        new_db = Database(str(self.db_path))
+        new_db = JSONDatabaseManager(str(self.db_path))
         self.assertEqual(new_db.get("theme"), "dark")
         self.assertEqual(new_db.get("volume"), 80)
 
@@ -77,7 +77,7 @@ class TestDatabase(unittest.TestCase):
         # Write invalid JSON manually
         self.db_path.write_text("{ invalid json", encoding="utf-8")
 
-        new_db = Database(str(self.db_path))
+        new_db = JSONDatabaseManager(str(self.db_path))
         self.assertEqual(new_db.get_all(), {})
 
     def test_thread_safety_basic(self):
