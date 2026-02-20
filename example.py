@@ -1,9 +1,9 @@
-from database import Database
+from json_database_manager import JSONDatabaseManager
 
 
 def main():
     # Initialize the database (JSON file will be created automatically if it does not exist)
-    settings_db = Database(file_path="./storage/data/settings.json")
+    settings_db = JSONDatabaseManager(file_path="./storage/data/settings.json")
 
     # ─────────────────────────────────────────────
     # Save application settings
