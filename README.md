@@ -1,27 +1,27 @@
 # Database Usage Example
 
-This document provides a practical example of how to use the `Database` class for managing
+This document provides a practical example of how to use the `JSONDatabaseManager` class for managing
 application settings and user preferences using a JSON file with thread-safe access.
 
 ## Installation
 
-Make sure you have your `database.py` file available in your project:
+Make sure you have your `json_database_manager.py` file available in your project:
 
 ```bash
 project/
-├── database.py
+├── json_database_manager.py
 └── main.py
 ```
 
 ## Example: Managing Application Settings
 
 ```python
-from database import Database
+from json_database_manager import JSONDatabaseManager
 
 
 def main():
-    # Initialize the database (JSON file will be created automatically if it does not exist)
-    settings_db = Database(file_path="./storage/data/settings.json")
+    # Initialize the json_database_manager (JSON file will be created automatically if it does not exist)
+    settings_db = JSONDatabaseManager(file_path="./storage/data/settings.json")
 
     # Save application settings
     settings_db.set("theme", "dark")
