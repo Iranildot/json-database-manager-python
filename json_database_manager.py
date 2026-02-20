@@ -14,7 +14,7 @@ class Database:
 
     def __init__(self, file_path: str) -> None:
         """
-        Initialize the JSON database.
+        Initialize the JSON Database Manager.
 
         Parameters
         ----------
@@ -184,16 +184,3 @@ class Database:
         """
         with self._lock:
             return self.data.copy()
-
-
-# Example usage
-# if __name__ == "__main__":
-#     settings_database = Database(file_path="./storage/data/settings.json")
-
-#     # Use the database
-#     settings_database.set("theme", "dark")
-#     settings_database.set("language", "en-us")
-
-#     print(settings_database.get("theme"))      # dark
-#     print(settings_database.exists("theme"))   # True
-#     print(settings_database.get_all())         # {'theme': 'dark', 'language': 'en-us'}
